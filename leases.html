@@ -1,0 +1,54 @@
+<!-- templates/leases.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Leases</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Manage Leases</h1>
+    <button onclick="location.href='/'">Back to Main Menu</button>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Lease ID</th>
+                <th>Tenant ID</th>
+                <th>Apartment ID</th>
+                <th>Lease Start Date</th>
+                <th>Lease End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lease in leases %}
+            <tr>
+                <td>{{ lease[0] }}</td>
+                <td>{{ lease[2] }}</td>
+                <td>{{ lease[1] }}</td>
+                <td>{{ lease[3] }}</td>
+                <td>{{ lease[4] }}</td>
+                <td>
+                    <form action="/delete_lease/{{ lease[0] }}" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this lease?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <h2>Add Lease</h2>
+    <form action="/add_lease" method="POST">
+        <input type="number" name="lease_id" placeholder="lease_id" required>
+        <input type="number" name="tenant_id" placeholder="tenant_id" required>
+        <input type="number" name="apartment_id" placeholder="apartment_id" required>
+        <input type="date" name="lease_start_date" required>
+        <input type="date" name="lease_end_date" required>
+        <button type="submit">Add Lease</button>
+    </form>
+</body>
+</html>

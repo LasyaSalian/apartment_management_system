@@ -1,0 +1,64 @@
+<!-- templates/parking.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Parking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+    <h1>Manage Parking</h1>
+    <button onclick="location.href='/'">Back to Main Menu</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Parking ID</th>
+                <th>Tenant ID</th>
+                <th>Space Number</th>
+                <th>Parking type</th>
+                <th>Availability Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for parking in parking %}
+            <tr>
+                <td>{{ parking[0] }}</td>
+                <td>{{ parking[1] }}</td>
+                <td>{{ parking[2] }}</td>
+                <td>{{ parking[3] }}</td>
+                <td>{{ parking[4] }}</td>
+                <td>
+                    <form action="/delete_parking/{{ parking[0] }}" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this parking assignment?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Add Parking Assignment</h2>
+    <form action="/add_parking" method="POST">
+        <input type="number" name="parking_id" placeholder="parking_id" required>
+        <input type="number" name="tenant_id" placeholder="tenant_id" required>
+        <input type="text" name="space_number" placeholder="space_number" required>
+        <select name="availability_status" required>
+            <option value="">Select Availability Status</option>
+            <option value="1">Available</option>
+            <option value="0">Occupied</option>
+        </select>
+        
+        
+        <select name="parking_type" required>
+            <option value="">Select Type</option>
+            <option value="2 wheeler">2 wheeler</option>
+            <option value="4 wheeler">4 wheeler</option>          
+        </select>
+        <button type="submit">Add Parking Assignment</button>
+    </form>
+</body>
+</html>

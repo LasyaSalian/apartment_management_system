@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <body style="background-image: url('static/images/img2.jpeg'); background-size: cover; background-position: center; background-repeat: no-repeat; font-family: Arial, sans-serif; color: #333;"></body>
+
+
+</head>
+<body>
+    <h1>Welcome to the Apartment Management System</h1>
+    <nav>
+        <ul>
+            <li><a href="/tenants">Manage Tenants</a></li>
+            <li><a href="/apartments">Manage Apartments</a></li>
+            <li><a href="/leases">Manage Leases</a></li>
+            <li><a href="/payments">Manage Payments</a></li>
+            <li><a href="/maintenance_requests">Manage Maintenance Requests</a></li>
+            <li><a href="/parking">Manage Parking</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
